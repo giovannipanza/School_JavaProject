@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/5H_Aloia/5H_Aloia.iml" filepath="$PROJECT_DIR$/5H_Aloia/5H_Aloia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/5H_Biancalani/5H_Biancalani.iml" filepath="$PROJECT_DIR$/5H_Biancalani/5H_Biancalani.iml" />
       <module fileurl="file://$PROJECT_DIR$/GiocoFiletto.iml" filepath="$PROJECT_DIR$/GiocoFiletto.iml" />
     </modules>
   </component>
