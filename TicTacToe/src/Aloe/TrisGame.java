@@ -28,7 +28,7 @@ public class TrisGame {
         }
     }
 
-    public synchronized void play() {
+    public synchronized void play() {  //perchè di tipo sincronizzato
         try {
             boolean gameWon = false;
 
