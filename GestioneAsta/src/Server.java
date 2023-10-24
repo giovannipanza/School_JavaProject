@@ -1,5 +1,5 @@
 /*
-    Programma semplificato di gestione di un asta online NO MULTITHREAD (un solo client alla volta)
+    Programma molto semplificato di gestione di un asta online NO MULTITHREAD (un solo client alla volta)
  */
 
 import java.io.BufferedReader;
