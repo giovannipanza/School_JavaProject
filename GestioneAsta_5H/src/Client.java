@@ -10,14 +10,14 @@ public class Client {
 
     private Socket socket;
     private PrintWriter out;
-    private BufferedReader in, tastiera;
+    private BufferedReader in;
+    private static BufferedReader tastiera;
 
     public Client(String host, int port) throws IOException {
         socket = new Socket(host, port);
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-        tastiera=in = new BufferedReader(new InputStreamReader(System.in));
+        tastiera = new BufferedReader(new InputStreamReader(System.in));
     }
 
     public void sendMessage(String message) throws IOException {
@@ -35,9 +35,14 @@ public class Client {
     public static void main(String[] args) throws IOException {
         Client client = new Client("localhost", 12345);
 
+
+
         // Invio un messaggio al server
         client.sendMessage("Ciao server!");
-        System.out.println("Risposta del Server: " + client.receiveMessage());
+        System.out.println("Risposta del Server: ");
+        String app=client.receiveMessage();
+        System.out.println(app);
+
 
         String inputLine;
         while ((inputLine = client.receiveMessage()) != null) {
@@ -46,6 +51,10 @@ public class Client {
                 break;
             }
             System.out.println(inputLine);
+
+            client.sendMessage(tastiera.readLine());
+
+
         }
     }
 }

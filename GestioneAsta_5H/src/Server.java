@@ -12,17 +12,20 @@ import java.util.ArrayList;
 public class Server {
 
     private ServerSocket serverSocket;
-    ArrayList<Socket> connessioni = new ArrayList<Socket>(); // Create an ArrayList object
+    ArrayList<Socket> connessioni = new ArrayList<Socket>();
+    ArrayList<Integer> offerte=new ArrayList<Integer>();// Create an ArrayList object
     public Server(int port) throws IOException {
         serverSocket = new ServerSocket(port);
     }
 
     public void start() throws IOException {
         while (true) {
+                System.out.println("Attendo una nuova connessione");
                 Socket socket = serverSocket.accept();
                 connessioni.add(socket);
-                Thread thread = new Thread(new Gestore(socket, connessioni));
+                Thread thread = new Thread(new Gestore(socket, connessioni,offerte));
                 thread.start();
+                System.out.println("Client connesso!");
 
         }
     }
