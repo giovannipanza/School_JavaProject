@@ -22,12 +22,11 @@ public class Gestore implements Runnable {
            out = new PrintWriter(socket.getOutputStream(),true);
            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
+            //primo scambio di messaggi con il client
             String message = in.readLine();
             System.out.println(message);
 
-            out.println("Ti sei connesso: a breve partirà l'asta \n");
-
-            System.out.println("Connessioni attive: "+connessioni.size());
+            out.println("Ti sei connesso: a breve partirà l'asta");
 
             //gestisto una comunicazione in BROADCAST
             if (connessioni.size()==2) {
@@ -38,7 +37,8 @@ public class Gestore implements Runnable {
 
                 for (int i = 0; i < connessioni.size(); i++) {
                     in2 = new BufferedReader(new InputStreamReader(connessioni.get(i).getInputStream()));
-
+                    offerte.add(Integer.parseInt(in2.readLine()));
+                    System.out.println(offerte.get(i).toString());
                 }
             }
 

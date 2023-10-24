@@ -26,6 +26,7 @@ public class Server {
                 Thread thread = new Thread(new Gestore(socket, connessioni,offerte));
                 thread.start();
                 System.out.println("Client connesso!");
+                System.out.println("Connessioni attive: "+connessioni.size());
 
         }
     }
