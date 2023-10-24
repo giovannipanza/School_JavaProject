@@ -19,12 +19,11 @@ public class Server {
 
     public void start() throws IOException {
         while (true) {
-            if (connessioni.size()<1) {
                 Socket socket = serverSocket.accept();
                 connessioni.add(socket);
                 Thread thread = new Thread(new Gestore(socket, connessioni));
                 thread.start();
-            }
+
         }
     }
 
