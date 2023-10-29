@@ -25,14 +25,15 @@ public class Server {
                 // Accetta una connessione da un client
                 System.out.println("In attesa di connessioni...");
                 Socket socket = serverSocket.accept();
-                System.out.println("Connessione accettata!");
-                System.out.println("Connessione attive!"+connessioni.size());
-
+                System.out.println("Si è connesso un client!");
 
                 // Crea un thread per gestire il client e l'oggetto dell'asta
                 Thread thread = new Thread(new GestoreClient(socket, o1));
-                connessioni.add(socket );
                 thread.start();
+                connessioni.add(socket );
+                System.out.println("Connessione attive!"+connessioni.size());
+                System.out.println("------------------------------------");
+
             }
         }
 }
