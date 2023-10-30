@@ -35,7 +35,7 @@ public class GestoreClient implements Runnable {
         }
 
         // Ciclo infinito per gestire le offerte
-        while (true) {
+        while (o1.getNumeroOfferta()<o1.getNumeroOfferteMax()) {
             writer.println("Oggetto all'asta:"+o1.getOggettoAllAsta());
             writer.println("Prezzo di partenza:"+o1.getPrezzoMassimo()+"€");
 
@@ -47,10 +47,10 @@ public class GestoreClient implements Runnable {
                 e.printStackTrace();
             }
 
-            // Controlla che l'offerta sia valida
+            o1.setNumeroOfferta();
             double offertaDouble = Double.parseDouble(offerta);
 
-
+            // Controlla che l'offerta sia valida
             if (offertaDouble <= o1.getPrezzoMassimo()) {
                 writer.println("Offerta non valida. Inserire un valore maggiore di " + o1.getPrezzoMassimo() + "€");
             }

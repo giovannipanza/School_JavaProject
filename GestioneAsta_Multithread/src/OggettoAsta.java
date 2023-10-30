@@ -2,13 +2,16 @@ public class OggettoAsta {
     private String oggettoAllAsta;
     private  double prezzoPartenza;
 
+    private int numeroOfferta=0;
+    private final int  numeroOfferteMax=4;
+
     //prezzo massimo che l'ultimo cliente ha offerto
     private  double prezzoMassimo;
 
-    public OggettoAsta(String oggettoAllAsta, double prezzoPartenza, double prezzoMassimo) {
+    public OggettoAsta(String oggettoAllAsta, double prezzoPartenza) {
         this.oggettoAllAsta = oggettoAllAsta;
         this.prezzoPartenza = prezzoPartenza;
-        this.prezzoMassimo = prezzoMassimo;
+        this.prezzoMassimo = prezzoPartenza;
     }
 
     public String getOggettoAllAsta() {
@@ -25,6 +28,20 @@ public class OggettoAsta {
 
     public  double getPrezzoMassimo() {
         return prezzoMassimo;
+    }
+
+    public int getNumeroOfferteMax() {
+        return numeroOfferteMax;
+    }
+
+    public void setNumeroOfferta()
+    {
+        numeroOfferta++;
+    }
+
+    public int getNumeroOfferta()
+    {
+        return numeroOfferta;
     }
 
 }

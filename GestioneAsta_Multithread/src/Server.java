@@ -15,7 +15,7 @@ public class Server {
             // Crea un ServerSocket che accetta connessioni sulla porta 8080
             ServerSocket serverSocket = new ServerSocket(12345);
 
-            OggettoAsta o1 = new OggettoAsta("Macchina", 1000, 1000);
+            OggettoAsta o1 = new OggettoAsta("Macchina", 1000);
 
             // Crea una lista di thread
             connessioni = new ArrayList<Socket>();
