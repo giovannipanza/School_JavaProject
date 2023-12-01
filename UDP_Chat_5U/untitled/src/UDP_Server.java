@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class UDP_Server {
     private DatagramSocket serverSocket;
-    private ArrayList<InetAddress> clients = new ArrayList<>();
+    private ArrayList<DatagramPacket> clients = new ArrayList<>();
     private DatagramPacket receivePacket;
     private DatagramPacket sendPacket;
     private byte[] receiveData;
@@ -31,27 +31,28 @@ public class UDP_Server {
                 serverSocket.receive(receivePacket);
                 String message = new String(receivePacket.getData(), 0, receivePacket.getLength());
 
-                InetAddress clientAddress = receivePacket.getAddress();
-                clients.add(clientAddress);
+                clients.add(receivePacket);
+                InetAddress address = receivePacket.getAddress();
+                int port = receivePacket.getPort();
 
-                System.out.println("Messaggio da " + clientAddress + ":" + clientAddress.getHostAddress()+ ": " + message);
+                System.out.println("Messaggio da " + address + ":" + port + ": " + message);
 
-                broadcastMessage(message, clients);
+                broadcastMessage(message);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void broadcastMessage(String message,ArrayList<InetAddress> clients) {
+    private void broadcastMessage(String message) {
         try {
             byte[] sendData = message.getBytes();
 
             // Invia il messaggio a tutti gli indirizzi IP sulla rete
-            for (InetAddress clientAddress : clients) {
-                int port = new InetSocketAddress(clientAddress, 0).getPort();
-                //ho il problema di come prelevare la porta del client
-                sendPacket = new DatagramPacket(sendData, sendData.length, clientAddress, port);
+            for (DatagramPacket clientAddress : clients) {
+                InetAddress address = clientAddress.getAddress();
+                int port = clientAddress.getPort();
+                sendPacket = new DatagramPacket(sendData, sendData.length, address, port);
                 serverSocket.send(sendPacket);
             }
 
