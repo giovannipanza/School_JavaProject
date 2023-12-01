@@ -24,6 +24,7 @@ public class UDP_Client_Receive extends Thread {
             byte[] receiveData = new byte[1024];
             System.out.println("Sono nel metodo receiveMessages()");
             while (true) {
+                System.out.println("Resto in attesa di un messaggio dal server...");
                 receivePacket = new DatagramPacket(receiveData, receiveData.length);
                 clientSocket.receive(receivePacket);
 
