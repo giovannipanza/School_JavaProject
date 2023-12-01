@@ -5,11 +5,11 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Scanner;
 
-public class UDP_Client extends Thread {
+public class UDP_Client_Send extends Thread {
     private DatagramSocket clientSocket;
     private Scanner scanner = new Scanner(System.in);
 
-    public UDP_Client() {
+    public UDP_Client_Send() {
         try {
             clientSocket = new DatagramSocket();
         } catch (Exception e) {
@@ -33,24 +33,9 @@ public class UDP_Client extends Thread {
         }
     }
 
-    public void receiveMessages() {
-        try {
-            byte[] receiveData = new byte[1024];
 
-            while (true) {
-                DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-                clientSocket.receive(receivePacket);
-
-                String message = new String(receivePacket.getData(), 0, receivePacket.getLength());
-                System.out.println("Messaggio dal server: " + message);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void run(){
         sendMessages();
-        receiveMessages();
     }
 }

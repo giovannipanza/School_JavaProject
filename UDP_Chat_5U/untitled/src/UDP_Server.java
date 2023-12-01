@@ -24,22 +24,29 @@ public class UDP_Server {
                 serverSocket.receive(receivePacket);
 
                 String message = new String(receivePacket.getData(), 0, receivePacket.getLength());
+
+                //prelevo l'indirizzo e la porta del client
                 InetAddress clientAddress = receivePacket.getAddress();
                 int clientPort = receivePacket.getPort();
 
                 System.out.println("Messaggio da " + clientAddress + ":" + clientPort + ": " + message);
 
-                broadcastMessage(message, clientAddress, clientPort);
+                broadcastMessage(message, clientPort);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void broadcastMessage(String message, InetAddress clientAddress, int clientPort) {
+    private void broadcastMessage(String message, int clientPort) {
         try {
             byte[] sendData = message.getBytes();
-            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, clientAddress, clientPort);
+
+            // Invia il messaggio a tutti gli indirizzi IP sulla rete
+            InetAddress broadcastAddress = InetAddress.getByName("255.255.255.255");
+
+            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, broadcastAddress, clientPort );
+
             serverSocket.send(sendPacket);
         } catch (Exception e) {
             e.printStackTrace();
