@@ -38,10 +38,16 @@ public class GameClient {
         GameClient client = new GameClient(address, port);
 
         while (true) {
-            System.out.println("Inserisci la parola da indovinare:");
+            System.out.println("Inserisci un carattere della parola che vuoi indovinare:");
             String guess = scanner.nextLine();
-            client.sendGuess(guess);
-            client.receiveServerResponse();
+
+            // Assicurati che l'utente inserisca un solo carattere
+            if (guess.length() == 1) {
+                client.sendGuess(guess);
+                client.receiveServerResponse();
+            } else {
+                System.out.println("Per favore, inserisci solo un carattere.");
+            }
         }
     }
 }
