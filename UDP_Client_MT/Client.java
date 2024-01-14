@@ -40,7 +40,7 @@ public class Client {
         try (Scanner scanner = new Scanner(System.in)) {
             String input;
             while (true) {
-                System.out.print("Enter message: ");
+                System.out.print("Inserisci il messaggio da inviare al Server: ");
                 input = scanner.nextLine();
                 buf = input.getBytes();
                 DatagramPacket packet = new DatagramPacket(buf, buf.length, address, port);
@@ -62,7 +62,7 @@ public class Client {
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
                 socket.receive(packet);
                 String received = new String(packet.getData(), 0, packet.getLength());
-                System.out.println("Server: " + received);
+                System.out.println("Messaggio dal Server: " + received);
             }
         } catch (IOException e) {
             System.out.println("IOException: " + e.getMessage());
