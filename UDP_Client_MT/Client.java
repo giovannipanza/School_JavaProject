@@ -20,6 +20,8 @@ public class Client {
     }
 
     public void start() {
+
+      // un modo semplificato per creare un Thread senza la necessità di creare altre classi
         Thread sendThread = new Thread(new Runnable() {
             public void run() {
                 sendData();
